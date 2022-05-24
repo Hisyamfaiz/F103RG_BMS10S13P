@@ -1,0 +1,5 @@
+Battery_Charge_Discharge.c:20:6:Batt_Discharge_Mode	8	static
+Battery_Charge_Discharge.c:49:6:Batt_Charge_Mode	8	static
+Battery_Charge_Discharge.c:79:6:Batt_Full_CD_Mode	8	static
+Battery_Charge_Discharge.c:107:6:Batt_Open_Mode	8	static
+Battery_Charge_Discharge.c:121:6:check_SOC_Based_OCV	16	static

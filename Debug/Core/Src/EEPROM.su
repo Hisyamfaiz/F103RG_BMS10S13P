@@ -1,0 +1,7 @@
+EEPROM.c:9:6:EEPROM_isDeviceReady	16	static
+EEPROM.c:19:6:EEPROM_WriteData	32	static
+EEPROM.c:25:9:EEPROM_ReadData	40	static
+EEPROM.c:33:6:EEPROM_WriteChar	48	static
+EEPROM.c:45:6:EEPROM_ReadChar	32	static
+EEPROM.c:55:6:EEPROM_WritemByte	40	static
+EEPROM.c:66:6:ReadmByte_FRAM	32	static
