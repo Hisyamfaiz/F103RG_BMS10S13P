@@ -33,8 +33,7 @@ void Batt_Discharge_Mode(void)
 	}
 	else
 	{
-		HAL_GPIO_WritePin(BATT_CUTH_GPIO_Port, BATT_CUTH_Pin, GPIO_PIN_SET);
-		HAL_GPIO_WritePin(BATT_CUTL_GPIO_Port, BATT_CUTL_Pin, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GATE_MOS_GPIO_Port, GATE_MOS_Pin, GPIO_PIN_SET);
 		BATT_State=STATE_DISCHARGE;
 
 		charge_state=0;
@@ -60,8 +59,7 @@ void Batt_Charge_Mode(void)
 	}
 	else
 	{
-		HAL_GPIO_WritePin(BATT_CUTH_GPIO_Port, BATT_CUTH_Pin, GPIO_PIN_SET);
-		HAL_GPIO_WritePin(BATT_CUTL_GPIO_Port, BATT_CUTL_Pin, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GATE_MOS_GPIO_Port, GATE_MOS_Pin, GPIO_PIN_SET);
 		BATT_State=STATE_CHARGE;
 		charge_state=1;
 		discharge_state=0;
@@ -94,8 +92,7 @@ void Batt_Full_CD_Mode(void)
 	}
 	else
 	{
-		HAL_GPIO_WritePin(BATT_CUTH_GPIO_Port, BATT_CUTH_Pin, GPIO_PIN_SET);
-		HAL_GPIO_WritePin(BATT_CUTL_GPIO_Port, BATT_CUTL_Pin, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GATE_MOS_GPIO_Port, GATE_MOS_Pin, GPIO_PIN_SET);
 		BATT_State=STATE_FULL_CHARGE_DISCHARGE;
 		charge_state=1;
 		discharge_state=1;
@@ -106,8 +103,7 @@ void Batt_Full_CD_Mode(void)
 
 void Batt_Open_Mode(void)
 {
-	HAL_GPIO_WritePin(BATT_CUTH_GPIO_Port, BATT_CUTH_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(BATT_CUTL_GPIO_Port, BATT_CUTL_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GATE_MOS_GPIO_Port, GATE_MOS_Pin, GPIO_PIN_RESET);
 	BATT_State=STATE_STANDBY;
 	charge_state=0;
 	discharge_state=0;

@@ -72,16 +72,28 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define BUZZER_Pin GPIO_PIN_13
 #define BUZZER_GPIO_Port GPIOC
-#define EEPROM_WP_Pin GPIO_PIN_12
-#define EEPROM_WP_GPIO_Port GPIOB
-#define BMS_SHUTDOWN_Pin GPIO_PIN_15
-#define BMS_SHUTDOWN_GPIO_Port GPIOB
+#define BMS_SHUTDOWN_Pin GPIO_PIN_1
+#define BMS_SHUTDOWN_GPIO_Port GPIOC
+#define UP_CEL_EMP_Pin GPIO_PIN_1
+#define UP_CEL_EMP_GPIO_Port GPIOA
+#define DOWN_CELL_TEMP_Pin GPIO_PIN_2
+#define DOWN_CELL_TEMP_GPIO_Port GPIOA
+#define MOSFET_TEMP_Pin GPIO_PIN_3
+#define MOSFET_TEMP_GPIO_Port GPIOA
+#define CURRENT_SENSE_TEMP_Pin GPIO_PIN_4
+#define CURRENT_SENSE_TEMP_GPIO_Port GPIOA
+#define SPARE_TEMP_Pin GPIO_PIN_5
+#define SPARE_TEMP_GPIO_Port GPIOA
+#define EEPROM_WP_Pin GPIO_PIN_5
+#define EEPROM_WP_GPIO_Port GPIOC
+#define EEPROM_SCL_Pin GPIO_PIN_10
+#define EEPROM_SCL_GPIO_Port GPIOB
+#define EEPROM_SDA_Pin GPIO_PIN_11
+#define EEPROM_SDA_GPIO_Port GPIOB
 #define LED_Pin GPIO_PIN_6
 #define LED_GPIO_Port GPIOC
-#define BATT_CUTL_Pin GPIO_PIN_9
-#define BATT_CUTL_GPIO_Port GPIOC
-#define BATT_CUTH_Pin GPIO_PIN_8
-#define BATT_CUTH_GPIO_Port GPIOA
+#define GATE_MOS_Pin GPIO_PIN_8
+#define GATE_MOS_GPIO_Port GPIOA
 #define CSBI_Pin GPIO_PIN_12
 #define CSBI_GPIO_Port GPIOC
 #define SCK_Pin GPIO_PIN_3
@@ -90,6 +102,10 @@ void Error_Handler(void);
 #define SDO_GPIO_Port GPIOB
 #define SDI_Pin GPIO_PIN_5
 #define SDI_GPIO_Port GPIOB
+#define OLED_SCL_Pin GPIO_PIN_6
+#define OLED_SCL_GPIO_Port GPIOB
+#define OLED_SDA_Pin GPIO_PIN_7
+#define OLED_SDA_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 // Deklarasi Fungsi start-up dan tampilan

@@ -60,8 +60,8 @@ all: main-build
 main-build: BMS10S10P-F103RG.elf secondary-outputs
 
 # Tool invocations
-BMS10S10P-F103RG.elf: $(OBJS) $(USER_OBJS) C:\Users\Moh\ Hisyam\ Faiz\STM32CubeIDE\workspace_1.8.0\BMS10S10P-F103RG\STM32F103RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "BMS10S10P-F103RG.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\Moh Hisyam Faiz\STM32CubeIDE\workspace_1.8.0\BMS10S10P-F103RG\STM32F103RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BMS10S10P-F103RG.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+BMS10S10P-F103RG.elf: $(OBJS) $(USER_OBJS) C:\Users\faiz_\git\F103RG_BMS10S13P\STM32F103RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "BMS10S10P-F103RG.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\faiz_\git\F103RG_BMS10S13P\STM32F103RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BMS10S10P-F103RG.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

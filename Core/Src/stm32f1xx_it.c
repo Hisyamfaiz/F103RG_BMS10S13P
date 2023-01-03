@@ -461,7 +461,7 @@ void Batt_Protection_when_discharge(void) {
 			Batt_Open_Mode();
 			T_trip_cycle=T_Under_trip;
 			flag_trip_undervoltage=ON;
-			HAL_GPIO_WritePin(BATT_CUTL_GPIO_Port, BATT_CUTL_Pin, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GATE_MOS_GPIO_Port, GATE_MOS_Pin, GPIO_PIN_RESET);
 		}
 
 		if(flag_trip_undervoltage==OFF) {
