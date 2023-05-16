@@ -10,7 +10,7 @@ stm32f1xx_it.c:243:6:SysTick_Handler	8	static
 stm32f1xx_it.c:264:6:DMA1_Channel1_IRQHandler	8	static
 stm32f1xx_it.c:278:6:USB_LP_CAN1_RX0_IRQHandler	8	static
 stm32f1xx_it.c:292:6:TIM2_IRQHandler	16	static
-stm32f1xx_it.c:417:6:TIM3_IRQHandler	8	static
-stm32f1xx_it.c:443:6:Batt_Protection_when_discharge	16	static
-stm32f1xx_it.c:635:6:Batt_Protection_when_charge	16	static
-stm32f1xx_it.c:755:6:Batt_Protection_when_chargedischarge	16	static
+stm32f1xx_it.c:426:6:TIM3_IRQHandler	8	static
+stm32f1xx_it.c:452:6:Batt_Protection_when_discharge	16	static
+stm32f1xx_it.c:644:6:Batt_Protection_when_charge	16	static
+stm32f1xx_it.c:782:6:Batt_Protection_when_chargedischarge	16	static

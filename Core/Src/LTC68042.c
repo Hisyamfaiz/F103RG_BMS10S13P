@@ -1248,7 +1248,8 @@ uint16_t get_balance_status(float Cell_Voltage_10data[10])
 	float buffer_imbalance;
 
 	for(int ik=0;ik<10;ik++) {
-		if(Cell_Voltage_10data[ik]<Cell_Voltage_Lowest) Cell_Voltage_Lowest=Cell_Voltage_10data[ik];
+		if(Cell_Voltage_10data[ik] < Cell_Voltage_Lowest)
+			Cell_Voltage_Lowest = Cell_Voltage_10data[ik];
 	}
 
 	for(int ik=0;ik<10;ik++) {
@@ -1256,7 +1257,7 @@ uint16_t get_balance_status(float Cell_Voltage_10data[10])
 
 		buffer_imbalance+=delta_vbatt[ik];
 
-		if(delta_vbatt[ik]> 0.025 && Cell_Voltage_10data[ik]>VCELL_BALANCE_PERMITTED) {
+		if(delta_vbatt[ik]> 0.025 && Cell_Voltage_10data[ik] > VCELL_BALANCE_PERMITTED) {
 			temp_dat = 0x01;
 			temp_dat = temp_dat << ik;
 			balance_status= balance_status+temp_dat;
@@ -1279,7 +1280,7 @@ void LTC681x_balance_cell(uint16_t cell_to_balance)
 	for(lm=0;lm<10;lm++)
 	{
 		cell_balance_status = cell_to_balance >> lm & 0x01;
-		if(lm < 8)
+		if(lm < 7)
 		{
 			if(lm < 5)
 				temp_var = cell_balance_status << lm;
@@ -1290,7 +1291,7 @@ void LTC681x_balance_cell(uint16_t cell_to_balance)
 		}
 		else
 		{
-			temp_var = cell_balance_status << (lm-8);
+			temp_var = cell_balance_status << (lm-7);
 			wr_config[0][5] += temp_var;
 		}
 

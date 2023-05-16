@@ -28,4 +28,4 @@ LTC68042.c:1192:6:spi_write_read	40	static
 LTC68042.c:1211:6:read_voltage_percell	48	static
 LTC68042.c:1229:6:read_sumvoltage	8	static
 LTC68042.c:1242:10:get_balance_status	40	static
-LTC68042.c:1269:6:LTC681x_balance_cell	24	static
+LTC68042.c:1270:6:LTC681x_balance_cell	24	static

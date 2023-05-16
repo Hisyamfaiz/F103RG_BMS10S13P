@@ -74,18 +74,22 @@ void Error_Handler(void);
 #define BUZZER_GPIO_Port GPIOC
 #define BMS_SHUTDOWN_Pin GPIO_PIN_1
 #define BMS_SHUTDOWN_GPIO_Port GPIOC
-#define UP_CEL_EMP_Pin GPIO_PIN_1
-#define UP_CEL_EMP_GPIO_Port GPIOA
-#define DOWN_CELL_TEMP_Pin GPIO_PIN_2
-#define DOWN_CELL_TEMP_GPIO_Port GPIOA
+#define LOWCELL_TEMP_Pin GPIO_PIN_1
+#define LOWCELL_TEMP_GPIO_Port GPIOA
+#define HIGHCELL_TEMP_Pin GPIO_PIN_2
+#define HIGHCELL_TEMP_GPIO_Port GPIOA
 #define MOSFET_TEMP_Pin GPIO_PIN_3
 #define MOSFET_TEMP_GPIO_Port GPIOA
 #define CURRENT_SENSE_TEMP_Pin GPIO_PIN_4
 #define CURRENT_SENSE_TEMP_GPIO_Port GPIOA
-#define SPARE_TEMP_Pin GPIO_PIN_5
+#define CURRENT_SENSOR_Pin GPIO_PIN_5
+#define CURRENT_SENSOR_GPIO_Port GPIOA
+#define SPARE_TEMP_Pin GPIO_PIN_6
 #define SPARE_TEMP_GPIO_Port GPIOA
 #define EEPROM_WP_Pin GPIO_PIN_5
 #define EEPROM_WP_GPIO_Port GPIOC
+#define MIDCELL_TEMP_Pin GPIO_PIN_0
+#define MIDCELL_TEMP_GPIO_Port GPIOB
 #define EEPROM_SCL_Pin GPIO_PIN_10
 #define EEPROM_SCL_GPIO_Port GPIOB
 #define EEPROM_SDA_Pin GPIO_PIN_11
@@ -121,7 +125,7 @@ uint16_t	cell_voltage[3][12];
 uint8_t		RDCVA[2], PEC[2];
 
 // Variabel Read ADC
-uint16_t 	adc_value[5];
+uint16_t 	adc_value[7];
 float		i_datadigi;
 float		VBATT,
 			IBATT;
@@ -134,12 +138,16 @@ float		OFFSET_SENSOR_ARUS,
 float		Res_T1,
 			Res_T2,
 			Res_T3,
-			Res_T4;
+			Res_T4,
+			Res_T5,
+			Res_T6;
 
 float		Suhu_T1,
 			Suhu_T2,
 			Suhu_T3,
-			Suhu_T4;
+			Suhu_T4,
+			MOS_Temp,
+			CurrentSensor_Temp;
 
 // Variabel Bantu State BMS
 uint8_t 	flag_start_shutdown,

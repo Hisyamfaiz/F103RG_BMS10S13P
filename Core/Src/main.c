@@ -65,6 +65,7 @@ char	lower_UNIQUE_Code[5],
 
 int Sleep_tick=10000,
 	Shutdown_tick=15000;
+float pack_voltage;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -131,6 +132,12 @@ int main(void)
 	  ltc6804_CS_RESET(ltc6804_CS_PIN);
 	  read_voltage_percell();
 	  read_sumvoltage();
+//	  for(uint8_t ij=0; ij<15; ij++){
+//		  pack_voltage += cellvoltage_float[ij];
+//	  }
+//	  sum_voltage = pack_voltage;
+//	  pack_voltage = 0;
+
 	  ltc6804_CS_SET(ltc6804_CS_PIN);
 
 	  //comparing cell voltage to get
@@ -146,6 +153,9 @@ int main(void)
 		  balance_status = 0;
 		  LTC681x_balance_cell(0);
 	  }
+
+	  //Force Balancing
+	  //LTC681x_balance_cell(1 s/d 512);
 
 	  HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
 
@@ -227,7 +237,7 @@ void BMS_Init(void)
 	HAL_Delay(100);
 	HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, 0);
 	HAL_Delay(100);
-/*
+
 	SSD1306_Init();
 	HAL_Delay(500);
 	SSD1306_Fill(SSD1306_COLOR_BLACK);
@@ -239,7 +249,7 @@ void BMS_Init(void)
 	SSD1306_Puts ("10S13P", &Font_7x10, 1);
 	SSD1306_UpdateScreen(); //display
 	SSD1306_Fill (0);
-*/
+
 
 	ltc6804_GPIO_Config();
 	ltc6804_SPIInit();
@@ -247,7 +257,7 @@ void BMS_Init(void)
 	set_adc(MD_FILTERED, DCP_DISABLED, CELL_CH_ALL, AUX_CH_ALL); //ADC Setting
 	HAL_Delay(10);
 
-	HAL_ADC_Start_DMA(&hadc1, (uint32_t *) &adc_value, 5);
+	HAL_ADC_Start_DMA(&hadc1, (uint32_t *) &adc_value, 7);
 	HAL_TIM_Base_Start_IT(&htim2);
 	HAL_TIM_Base_Start_IT(&htim3);
 
@@ -265,7 +275,7 @@ void BMS_ScreenMode_RUN(void)
 {
 	if(flag_start_shutdown == 0)
 	{
-		/*
+
 		SSD1306_Fill(SSD1306_COLOR_BLACK);
 		sprintf(buff_lcd,"RUNNING");
 		SSD1306_GotoXY(40,18);
@@ -275,7 +285,7 @@ void BMS_ScreenMode_RUN(void)
 		SSD1306_GotoXY(25,38);
 		SSD1306_Puts(buff_lcd, &Font_7x10, SSD1306_COLOR_WHITE);
 		SSD1306_UpdateScreen();
-		*/
+
 
 		OFFSET_SENSOR_ARUS=IBATT_for_offset_cal;
 		Batt_Open_Mode();
@@ -317,7 +327,7 @@ void BMS_ScreenMode_RUN(void)
 	}
 	else
 	{
-/*
+
 		SSD1306_Fill(SSD1306_COLOR_BLACK);
 
 		if(BATT_State==STATE_CHARGE)
@@ -354,7 +364,7 @@ void BMS_ScreenMode_RUN(void)
 		sprintf(buff_lcd,"C=%5.1f%%--%5.1f%%",Pack_SOC,SOC_manipulasi);
 		SSD1306_GotoXY(0,30);
 		SSD1306_Puts(buff_lcd, &Font_7x10, SSD1306_COLOR_WHITE);
-		sprintf(buff_lcd,"B=%5d, %4.2f-%4.2f",unbalance_cell, persen_imbalance, OFFSET_SENSOR_ARUS);
+		sprintf(buff_lcd,"B=%5d|%4.2f|%4.2f",unbalance_cell, persen_imbalance, OFFSET_SENSOR_ARUS);
 		SSD1306_GotoXY(0,40);
 		SSD1306_Puts(buff_lcd, &Font_7x10, SSD1306_COLOR_WHITE);
 
@@ -363,7 +373,7 @@ void BMS_ScreenMode_RUN(void)
 		SSD1306_Puts(buff_lcd, &Font_7x10, SSD1306_COLOR_WHITE);
 
 		SSD1306_UpdateScreen();
-*/
+
 		if(BMS_mode==0) Batt_Open_Mode();
 		else if(BMS_mode==1) Batt_Discharge_Mode();
 		else if(BMS_mode==2) Batt_Charge_Mode();

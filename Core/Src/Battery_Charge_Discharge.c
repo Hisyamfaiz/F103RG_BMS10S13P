@@ -26,8 +26,7 @@ void Batt_Discharge_Mode(void)
 			flag_trip_SOCOverDischarge==ON||
 			flag_trip_shortcircuit==ON||
 			flag_trip_unbalance==ON||
-			flag_trip_systemfailure==ON||
-			VBATT < 30)
+			flag_trip_systemfailure==ON)
 	{
 		Batt_Open_Mode();
 	}
