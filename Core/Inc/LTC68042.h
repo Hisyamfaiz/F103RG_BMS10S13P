@@ -194,7 +194,8 @@ void LTC6804_adstat(void);
 
 uint16_t get_balance_status(float Cell_Voltage_10data[10]);
 void read_voltage_percell(void);
-void read_sumvoltage(void);
+void read_aux_adc(void);
+void read_sumvoltage(float *sum_voltage, float *analog_supply);
 void LTC681x_balance_cell(uint16_t cell_to_balance);
 
 float persen_imbalance;
@@ -205,7 +206,6 @@ uint8_t		RDCVA[2],
 uint8_t		CFGR4,
 			CFGR5;
 uint8_t		rd_config[1][8];
-float 		sum_voltage;
 
 #ifdef __cplusplus
 }

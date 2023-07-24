@@ -28,6 +28,7 @@ uint8_t ADAX[2]; //!< GPIO conversion command.
 
 float v_cell_tot;
 float delta_vbatt[10];
+uint16_t	adc_aux[1][6];
 
 float Cell_Voltage_Lowest;
 float minus_offset[15]={500,840,-40,-40,-100,540,830,20,-130,-120,560,880,-30,-110,-140}; //modul B
@@ -369,7 +370,7 @@ void LTC6804_adstat()
 
 	//1
 	cmd[0] = 0x05;
-	cmd[1] = 0xE9;
+	cmd[1] = 0xE8;
 
 	ADSTAT[0] = cmd[0];
 	ADSTAT[1] = cmd[1];
@@ -639,8 +640,6 @@ int8_t LTC6804_rdaux(uint8_t reg,
 		uint16_t aux_codes[][6]
 )
 {
-
-
 	const uint8_t NUM_RX_BYT = 8;
 	const uint8_t BYT_IN_REG = 6;
 	const uint8_t GPIO_IN_REG = 3;
@@ -680,8 +679,6 @@ int8_t LTC6804_rdaux(uint8_t reg,
 
 				data_counter=data_counter+2;
 			}
-
-
 		}
 
 	}
@@ -1213,11 +1210,10 @@ void read_voltage_percell(void)
 	uint16_t	cellvoltage_16bit[1][12];
 
 	LTC6804_adcv();
-	HAL_Delay(300);
-
+	HAL_Delay(1);
 	LTC6804_rdcv(0, 1, cellvoltage_16bit);
-	HAL_Delay(10);
-	state = 1;
+	HAL_Delay(1);
+
 	for(uint8_t ik=0;ik<11;ik++) {
 		if(ik >= 5)
 			cellvoltage_float[ik] = (float) (cellvoltage_16bit[0][ik+1] / 10000.0);
@@ -1226,16 +1222,23 @@ void read_voltage_percell(void)
 	}
 }
 
-void read_sumvoltage(void)
+void read_aux_adc(void)
+{
+	LTC6804_adax();
+	HAL_Delay(1);
+	LTC6804_rdaux(0, 1, adc_aux);
+	HAL_Delay(1);
+}
+
+void read_sumvoltage(float *sum_voltage, float *analog_supply)
 {
 	LTC6804_adstat();
-	HAL_Delay(200);
-
+	HAL_Delay(1);
 	LTC6804_rdstata(1, rd_config);
-	HAL_Delay(10);
+	HAL_Delay(1);
 
-	sum_voltage = (rd_config[0][0] | (rd_config[0][1] << 8)) * 20 * 0.1 / 1000.0;
-	state=2;
+	*sum_voltage = (rd_config[0][0] | (rd_config[0][1] << 8)) * 20 * 0.1 / 1000.0;
+	*analog_supply = (rd_config[0][4] | (rd_config[0][5] << 8)) * 0.1 / 1000.0;
 }
 
 
@@ -1298,5 +1301,5 @@ void LTC681x_balance_cell(uint16_t cell_to_balance)
 		temp_var=0;
 	}
 	LTC6804_wrcfg(1, wr_config);
-	HAL_Delay(10);
+	HAL_Delay(1);
 }

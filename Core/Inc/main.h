@@ -33,10 +33,12 @@ extern "C" {
 /* USER CODE BEGIN Includes */
 //Pendefinisian kode unik baterai
 //#define	UNIQUE_Code 0x00A21
-#define	UNIQUE_Code 0x00A22
+#define	UNIQUE_Code 0x00002
 
 #define ON 1
 #define OFF 0
+#define YES 1
+#define NO 0
 
 // Pendefinisan State BMS
 #define STATE_STANDBY 0
@@ -44,7 +46,9 @@ extern "C" {
 #define STATE_DISCHARGE 2
 #define STATE_FULL_CHARGE_DISCHARGE 3
 
+#define LED_Toggle HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin)
 #define BUZZ_Toggle HAL_GPIO_TogglePin(BUZZER_GPIO_Port, BUZZER_Pin)
+#define BUZZ_Write(X) HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, X)
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -116,6 +120,11 @@ void Error_Handler(void);
 void BMS_Init(void);
 void BMS_ScreenMode_Standby(void);
 void BMS_ScreenMode_RUN(void);
+void StartUp_Buzzer(void);
+void ShutDown_Buzzer(void);
+void isCell_UnderVoltage(float Cell_Voltage_10data[10]);
+void isCell_OverVoltage(float Cell_Voltage_10data[10]);
+void Reset_FlagProtection(void);
 
 // Deklarasi variabel komunikasi LTC6804
 uint8_t		CFGR4,
@@ -194,10 +203,14 @@ uint8_t flag_trip_overtemperature,
 		flag_trip_overcurrentcharge,
 		flag_trip_shortcircuit,
 		flag_trip_systemfailure,
-		flag_trip_unbalance;
+		flag_trip_unbalance,
+		flag_trip_cellundervoltage,
+		flag_trip_cellovervoltage;
 
 uint8_t Clear_Trip_undervoltage,
 		Clear_Trip_overcurrentdischarge;
+uint8_t Cell_OverVoltage,
+		Cell_UnderVoltage;
 
 //variable baterai dan SOC
 float	Pack_SOC,
