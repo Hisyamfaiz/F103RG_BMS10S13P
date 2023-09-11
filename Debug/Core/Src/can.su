@@ -6,4 +6,4 @@ can.c:231:6:CANTX_BattProtection	16	static
 can.c:278:6:CANTX_ReportToCharger	16	static
 can.c:316:6:CANTX_BattId	16	static
 can.c:349:6:HAL_CAN_RxFifo0MsgPendingCallback	16	static
-can.c:396:6:BMS_CAN_Config	48	static
+can.c:401:6:BMS_CAN_Config	48	static

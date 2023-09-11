@@ -314,9 +314,10 @@ void TIM2_IRQHandler(void)
 
 //	IBATT = 0.062151574718308*i_datadigi - 121.796885042846 - OFFSET_SENSOR_ARUS; // Modul B fix
 //	IBATT_for_offset_cal= 0.062151574718308*i_datadigi - 121.796885042846;
-	IBATT = 0.0635607965300084*i_datadigi - 126.223575896323; // Modul A fix
-//	IBATT = (0.0635607965300084*i_datadigi - 125.342575896323)*1.415; // Modul B fix
-//	IBATT_for_offset_cal= 0.0635607965300084*i_datadigi - 126.923575896323;
+
+//	IBATT = 0.0635607965300084*i_datadigi - 126.223575896323; // Modul A fix
+	IBATT = (0.0635607965300084*i_datadigi - 125.642575896323)*1.415; // Modul B fix
+
 
 	if(hitung_suhu >= interval_hitungsuhu) {
 

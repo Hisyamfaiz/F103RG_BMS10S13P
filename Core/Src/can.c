@@ -379,6 +379,11 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan) {
 			Shutdown_time_last = HAL_GetTick();
 		}
 
+		//Data ID from motor controller
+		else if(Rx_Header.ExtId == 0x1026105A || Rx_Header.ExtId == 0x102610522 || Rx_Header.ExtId == 0x102610523){
+			Shutdown_time_last = HAL_GetTick();
+		}
+
 		else if(Rx_Header.RTR == 2){
 			if(Rx_Header.StdId == 0x0B4) dataRTR = 4;
 			else if(Rx_Header.StdId == 0x0B5) dataRTR = 5;

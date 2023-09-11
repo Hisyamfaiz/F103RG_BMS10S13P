@@ -32,8 +32,7 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 //Pendefinisian kode unik baterai
-//#define	UNIQUE_Code 0x00A21
-#define	UNIQUE_Code 0x00002
+#define	UNIQUE_Code 0x00001
 
 #define ON 1
 #define OFF 0
